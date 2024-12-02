@@ -19,6 +19,6 @@ def supernova(x):
 def earth(x):
     pass
 
-density_sun = lambda x, o: sun(distance(x, o))
-density_SN = lambda x, o: supernova(distance(x, o))
-density_earth = lambda x, o: earth(distance(x, o))
+def density(fm, fr, x, o):
+    return fm(fr(x, o))
+
