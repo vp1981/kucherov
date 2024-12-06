@@ -19,6 +19,11 @@ def supernova(x):
 def earth(x):
     pass
 
-def density(fm, fr, x, o):
-    return fm(fr(x, o))
+def density(fm, x, o):
+    return fm(distance(x, o))
+
+def TestFunc(fn, o):
+    x = np.linspace(0, 1, 100)
+    y = density(fn, x, o)
+    plt.plot(x, y)
 
