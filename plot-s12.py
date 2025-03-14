@@ -34,7 +34,7 @@ def main(args):
     sys.exit("pass to the script at least one data file.")
 
   for itm in args[1:]:
-    x,e,p,ang=np.loadtxt(itm, unpack=True)
+    x,e,p,ang,fk=np.loadtxt(itm, unpack=True)
     fgn="sun-ang12.pdf"
     plotData(ang,p,fgn,r'$\theta_{12}$',r"$P$",f"survival prob. for Sun, E={e}")
 
