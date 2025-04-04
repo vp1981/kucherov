@@ -28,7 +28,7 @@ for ex in ${fk[@]}
 do
 	datf="${model}_${mod}_${mang}_fk=${ex}.dat"
 	echo -n "" > ${datf}
-	for i in $(seq 0 1 ${N})
+	for i in $(seq 0 1 $((N-1)))
 	do
 		./m4-tol ${model}.lua -c "Ep1=${Ep1};Ep2=${Ep2};d=(Ep2-Ep1)/(${N}-1);E=math.exp((${Ep1}+${i}*d)*math.log(10));${mang}=${ex}*${mang}" survprob.lua > "${fdata}"
 		dat=($(grep -v '^#' "${fdata}"))
