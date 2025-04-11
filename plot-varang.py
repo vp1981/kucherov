@@ -1,5 +1,13 @@
 #!/usr/bin/python
 
+"""
+читаем файлы из командной строки и строим данные на одном графике.
+
+все файлы должны иметь одинаковый формат.
+
+предполагается, что энергия во всех данных одинакова.
+"""
+
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
@@ -33,11 +41,16 @@ def main(args):
   """
   if len(args) <= 1:
     sys.exit("pass to the script at least one data file.")
-
+  
+  e=np.empty()
+  p=np.empty()
+  ang=np.empty()
+  fk=np.empty()
   for itm in args[1:]:
     x,e,p,ang,fk=np.loadtxt(itm, unpack=True)
-    fgn=f"sun-ang{mang}.pdf"
-    plotData(ang,p,fgn,f'$\\theta_{{mang}}$',r"$P$",f"survival prob. for Sun, E={e}")
+
+  fgn=f"sun-ang{mang}.pdf"
+  plotData(e,ang,p,fgn,f'$\\theta_{{mang}}$',r"$P$",f"survival prob. for Sun, E={e}")
 
 
 if __name__ == "__main__":
