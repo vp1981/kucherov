@@ -4,6 +4,7 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 
+mang="12"
 
 def plotData(x,y,figname,xlab,ylab,title):
   """
@@ -35,8 +36,8 @@ def main(args):
 
   for itm in args[1:]:
     x,e,p,ang,fk=np.loadtxt(itm, unpack=True)
-    fgn="sun-ang12.pdf"
-    plotData(ang,p,fgn,r'$\theta_{12}$',r"$P$",f"survival prob. for Sun, E={e}")
+    fgn=f"sun-ang{mang}.pdf"
+    plotData(ang,p,fgn,f'$\\theta_{{mang}}$',r"$P$",f"survival prob. for Sun, E={e}")
 
 
 if __name__ == "__main__":
