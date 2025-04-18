@@ -22,8 +22,9 @@ def plotData(x,y,figname,xlab,ylab,title):
   fig,ax=plt.subplots(layout='constrained')
 
   ax.set_title(title)
-  
-  ax.plot(x,y,'r.-')
+  for t in y: 
+    ax.plot(x,t,'r.-')
+  ax.set_xscale('log')
   ax.set_xlabel(xlab)
   ax.set_ylabel(ylab)
   ax.grid(True)
@@ -42,15 +43,17 @@ def main(args):
   if len(args) <= 1:
     sys.exit("pass to the script at least one data file.")
   
-  e=np.empty()
-  p=np.empty()
-  ang=np.empty()
-  fk=np.empty()
+  e=[]
+  y=[]
+  ang=[]
+  fk=[]
   for itm in args[1:]:
     x,e,p,ang,fk=np.loadtxt(itm, unpack=True)
+    y.append(p)
+  p=np.array(y)
 
   fgn=f"sun-ang{mang}.pdf"
-  plotData(e,ang,p,fgn,f'$\\theta_{{mang}}$',r"$P$",f"survival prob. for Sun, E={e}")
+  plotData(e,p,fgn,f'$E$',r"$P$",f"survival prob. for Sun, varying angle {mang}")
 
 
 if __name__ == "__main__":
