@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 
 mang="12"
 
-def plotData(x,y,figname,xlab,ylab,title):
+def plotData(x,y,scales,figname,xlab,ylab,title):
   """
   plot y with x
   """
@@ -22,12 +22,15 @@ def plotData(x,y,figname,xlab,ylab,title):
   fig,ax=plt.subplots(layout='constrained')
 
   ax.set_title(title)
-  for t in y: 
-    ax.plot(x,t,'r.-')
+  for prb, s in zip(y,scales):
+    fc=int(100*np.float64(s[0]))
+    ax.plot(x,prb,'.-', label=f"{fc}%")
   ax.set_xscale('log')
   ax.set_xlabel(xlab)
   ax.set_ylabel(ylab)
   ax.grid(True)
+  hdl,lbs=ax.get_legend_handles_labels()
+  ax.legend(hdl,lbs)
 
   fig.align_labels()
 
@@ -46,14 +49,16 @@ def main(args):
   e=[]
   y=[]
   ang=[]
-  fk=[]
+  sc=[]
   for itm in args[1:]:
     x,e,p,ang,fk=np.loadtxt(itm, unpack=True)
     y.append(p)
+    sc.append(fk)
   p=np.array(y)
-
+  
   fgn=f"sun-ang{mang}.pdf"
-  plotData(e,p,fgn,f'$E$',r"$P$",f"survival prob. for Sun, varying angle {mang}")
+  tit="Survival prob. for Sun\nAngle $\\theta_{" + f"{mang}" + "}$ variation"
+  plotData(e,p,sc,fgn,r'$E$',r"$\mathsf{P}$",tit)
 
 
 if __name__ == "__main__":
