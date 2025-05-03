@@ -88,13 +88,13 @@ cnt=0
 for ex in $(seq ${fa} $(echo "scale=20; fa=${fa} ; fb=${fb} ; nf=${Nf} ; print((fb-fa)/(nf-1))" | bc) ${fb})
 do
   printf -v datf "id%02d.dat" ${cnt}
-	echo -n "" > "${datf}"
+  echo -n "" > "${datf}"
   for i in $(seq 0 1 $((Ne-1)))
-	do
+  do
     ./${prog} "${model_file}" -c "Ep1=${Ep1};Ep2=${Ep2};d=(Ep2-Ep1)/(${Ne}-1);E=math.exp((Ep1+${i}*d)*math.log(10));${mang}=${ex}*${mang}" "${prob_file}" > "${fdata}"
-		dat=($(grep -v '^#' "${fdata}"))
-		ang=$(grep "#*ex.*${mang}" "${fdata}" | sed -e 's@.*=@@')
-		echo "${dat[0]}  ${dat[1]}  ${dat[2]} ${ang} ${ex}" >> "${datf}"
-	done
+    dat=($(grep -v '^#' "${fdata}"))
+    ang=$(grep "#*ex.*${mang}" "${fdata}" | sed -e 's@.*=@@')
+    echo "${dat[0]}  ${dat[1]}  ${dat[2]} ${ang} ${ex}" >> "${datf}"
+  done
   ((cnt++))
 done
