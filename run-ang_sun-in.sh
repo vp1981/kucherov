@@ -14,16 +14,16 @@ Ep1=-3
 Ep2=7
 N=50
 
-if [ ! -d ${datadir} ];then
+if [ ! -d ${datadir} ]; then
   mkdir ${datadir}
 fi
 
-if [ ! -d ${bindir} ];then
+if [ ! -d ${bindir} ]; then
   echo "ошибка: нет каталога '$bindir'"
   exit 1
 fi
 
-(( $# !=3 )) && 
+(( $# != 3 )) && 
 {
   echo "сценарий требует 3 аргумента: маркер угла, количество шагов по энергии, количество шагов фактора угла"
   echo "пример: "
