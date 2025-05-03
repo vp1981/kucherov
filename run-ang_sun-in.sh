@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
 export LC_NUMERIC=en_US.UTF-8
+unset BC_ENV_ARGS
 
-fk=(0.9 0.95 1.0 1.05 1.1)
 fa=0.9
 fb=1.1
 
@@ -19,7 +19,6 @@ mang="s12"
 
 Ep1=-3
 Ep2=7
-N=50
 
 if [ ! -d "${datadir}" ]; then
   mkdir "${datadir}"
@@ -85,6 +84,7 @@ mkdir -p "${tdir}"
 
 cd "${bindir}"
 cnt=0
+
 for ex in $(seq ${fa} $(echo "scale=20; fa=${fa} ; fb=${fb} ; nf=${Nf} ; print((fb-fa)/(nf-1))" | bc) ${fb})
 do
   printf -v datf "id%02d.dat" ${cnt}
