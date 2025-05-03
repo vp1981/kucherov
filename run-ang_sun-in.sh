@@ -14,16 +14,16 @@ Ep1=-3
 Ep2=7
 N=50
 
-if [ ! -d ${datadir} ]; then
-  mkdir ${datadir}
+if [ ! -d "${datadir}" ]; then
+  mkdir "${datadir}"
 fi
 
-if [ ! -d ${bindir} ]; then
+if [ ! -d "${bindir}" ]; then
   echo "ОШИБКА: нет каталога '$bindir'"
   exit 1
 fi
 
-if [ ! -e ${bindir}/${prog} ]; then
+if [ ! -e "${bindir}"/"${prog}" ]; then
   echo "ОШИБКА: нет расчетной программы ${prog}"
   exit 5
 fi
@@ -59,7 +59,7 @@ Nf="$3"
 }
 
 tdir=${datadir}/${model}_${mod}_${mang}/"NexNf=${Ne}x${Nf}"
-mkdir -p ${tdir}
+mkdir -p "${tdir}"
 
 for ex in "${fk[@]}"
 do
