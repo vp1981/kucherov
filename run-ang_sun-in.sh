@@ -87,7 +87,7 @@ cnt=0
 
 for ex in $(seq ${fa} $(echo "scale=20; fa=${fa} ; fb=${fb} ; nf=${Nf} ; print((fb-fa)/(nf-1))" | bc) ${fb})
 do
-  printf -v datf "id%02d.dat" ${cnt}
+  printf -v datf "%s/id%02d.dat" "${tdir}" ${cnt}
   echo -n "" > "${datf}"
   for i in $(seq 0 1 $((Ne-1)))
   do
