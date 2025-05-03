@@ -5,8 +5,8 @@ export LC_NUMERIC=en_US.UTF-8
 fk=(0.9 0.95 1.0 1.05 1.1)
 model="sun"
 fdata="/tmp/data-${model}.tmp"
-datadir="$PWD/data"
-bindir="$PWD/magexp/bin"
+datadir="${PWD}/data"
+bindir="${PWD}/magexp/bin"
 prog=m4-tol
 mod="in"
 mang="s12"
@@ -14,11 +14,11 @@ Ep1=-3
 Ep2=7
 N=50
 
-if [ ! -d $datadir ];then
-  mkdir $datadir
+if [ ! -d ${datadir} ];then
+  mkdir ${datadir}
 fi
 
-if [ ! -d $bindir ];then
+if [ ! -d ${bindir} ];then
   echo "ошибка: нет каталога '$bindir'"
   exit 1
 fi
@@ -53,8 +53,8 @@ Nf="$3"
   exit 4
 }
 
-if [ ! -e $bindir/$prog ]; then
-  echo "ошибка: нет расчетной программы $prog"
+if [ ! -e ${bindir}/${prog} ]; then
+  echo "ошибка: нет расчетной программы ${prog}"
   exit 5
 fi
 
