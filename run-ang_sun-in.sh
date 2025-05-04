@@ -85,9 +85,10 @@ mkdir -p "${tdir}"
 cd "${bindir}"
 cnt=0
 
-for ex in $(seq ${fa} $(echo "scale=20; fa=${fa} ; fb=${fb} ; nf=${Nf} ; print((fb-fa)/(nf-1))" | bc) ${fb})
+# for ex in $(seq ${fa} $(echo "scale=20; fa=${fa} ; fb=${fb} ; nf=${Nf} ; print((fb-fa)/(nf-1))" | bc) ${fb})
+for ex in $(python -c "import numpy; [print(el) for el in numpy.linspace(${fa}, ${fb}, ${Nf})]")
 do
-  printf -v datf "%s/${model}_${mod}_${mang}_id%02d.dat" "${tdir}" ${cnt}
+  printf -v datf "%s/${model}_${mod}_${mang}_id%03d.dat" "${tdir}" ${cnt}
   echo -n "" > "${datf}"
   for i in $(seq 0 1 $((Ne-1)))
   do
